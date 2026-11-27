@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNAFF - Applications Management</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f2f5f9;
+ color:#172b45;
+}
+header{
+ background:#102b48;
+ color:white;
+ padding:22px;
+}
+header h2{margin:0}
+nav{
+ background:#173b60;
+ padding:15px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:18px;
+}
+nav a{
+ color:white;
+ text-decoration:none;
+ font-size:14px;
+}
+.container{
+ padding:22px;
+ max-width:1100px;
+ margin:auto;
+}
+.notice{
+ background:#fff3cd;
+ padding:13px;
+ border-radius:8px;
+ margin-bottom:20px;
+ color:#755500;
+}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+ gap:12px;
+}
+.card{
+ background:white;
+ padding:18px;
+ border-radius:10px;
+ box-shadow:0 2px 8px #00000010;
+}
+.card h3{margin:0 0 10px;color:#68788a}
+.number{font-size:27px;font-weight:bold}
+.panel{
+ background:white;
+ padding:18px;
+ border-radius:10px;
+ margin-top:22px;
+ overflow-x:auto;
+}
+input,select{
+ padding:11px;
+ border:1px solid #ccd5df;
+ border-radius:6px;
+ margin:5px;
+}
+table{
+ width:100%;
+ border-collapse:collapse;
+ min-width:650px;
+}
+th,td{
+ padding:13px;
+ text-align:left;
+ border-bottom:1px solid #e6ebf0;
+ font-size:14px;
+}
+th{background:#f4f7fa}
+button{
+ border:0;
+ padding:9px 12px;
+ border-radius:5px;
+ cursor:pointer;
+ margin:3px;
+}
+.review{background:#173b60;color:white}
+.approve{background:#d9f4e3;color:#176b37}
+.reject{background:#ffe0e0;color:#a32626}
+.status{font-weight:bold}
+footer{text-align:center;padding:25px;color:#718096}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>UNAFF Digital Banking</h2>
+<p>Customer Applications Management</p>
+</header>
+
+<nav>
+<a href="index.html">Dashboard</a>
+<a href="staff.html">Staff Portal</a>
+<a href="onboarding.html">New Application</a>
+<a href="applications.html">Applications</a>
+</nav>
+
+<div class="container">
+
+<div class="notice">
+<strong>DEMO MODE:</strong> All applications below are fictional examples. No real customer data is stored, and approval actions are simulations only.
+</div>
+
+<h2>Applications Overview</h2>
+
+<div class="stats">
+<div class="card">
+<h3>Total Applications</h3>
+<div class="number" id="total">4</div>
+</div>
+<div class="card">
+<h3>Pending Review</h3>
+<div class="number" id="pending">2</div>
+</div>
+<div class="card">
+<h3>Approved (Demo)</h3>
+<div class="number" id="approved">1</div>
+</div>
+<div class="card">
+<h3>Rejected (Demo)</h3>
+<div class="number" id="rejected">1</div>
+</div>
+</div>
+
+<div class="panel">
+<h2>Customer Applications</h2>
+
+<input id="search" placeholder="Search application..." oninput="render()">
+
+<select id="filter" onchange="render()">
+<option value="All">All Applications</option>
+<option value="Pending">Pending</option>
+<option value="Approved">Approved</option>
+<option value="Rejected">Rejected</option>
+</select>
+
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Customer</th>
+<th>Application Type</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="applicationRows"></tbody>
+</table>
+</div>
+
+</div>
+
+<footer>
+UNAFF Digital Banking | Demonstration Prototype
+</footer>
+
+<script>
+const applications = [
+ {ref:"APP-001",name:"John Demo",type:"Personal Account",date:"2026-11-20",status:"Pending"},
+ {ref:"APP-002",name:"Mary Sample",type:"Savings Account",date:"2026-11-21",status:"Approved"},
+ {ref:"APP-003",name:"Peter Example",type:"Personal Account",date:"2026-11-22",status:"Rejected"},
+ {ref:"APP-004",name:"Grace Fiction",type:"Business Account",date:"2026-11-23",status:"Pending"}
+];
+
+function updateStats(){
+ document.getElementById("total").textContent=applications.length;
+ document.getElementById("pending").textContent=applications.filter(a=>a.status==="Pending").length;
+ document.getElementById("approved").textContent=applications.filter(a=>a.status==="Approved").length;
+ document.getElementById("rejected").textContent=applications.filter(a=>a.status==="Rejected").length;
+}
+
+function render(){
+ const search=document.getElementById("search").value.toLowerCase();
+ const filter=document.getElementById("filter").value;
+
+ const results=applications.filter(a=>
+ (a.name.toLowerCase().includes(search)||a.ref.toLowerCase().includes(search)) &&
+ (filter==="All"||a.status===filter)
+ );
+
+ document.getElementById("applicationRows").innerHTML=results.map(a=>`
+ <tr>
+ <td>${a.ref}</td>
+ <td>${a.name}</td>
+ <td>${a.type}</td>
+ <td>${a.date}</td>
+ <td class="status">${a.status}</td>
+ <td>
+ ${a.status==="Pending" ? `
+ <button class="approve" onclick="changeStatus('${a.ref}','Approved')">Approve (Demo)</button>
+ <button class="reject" onclick="changeStatus('${a.ref}','Rejected')">Reject (Demo)</button>
+ ` : `<span>Completed (Demo)</span>`}
+ </td>
+ </tr>
+ `).join("") || `<tr><td colspan="6">No applications found.</td></tr>`;
+}
+
+function changeStatus(ref,status){
+ const application=applications.find(a=>a.ref===ref);
+ if(!application)return;
+
+ if(confirm("Simulate changing this application to "+status+"?")){
+ application.status=status;
+ updateStats();
+ render();
+ }
+}
+
+updateStats();
+render();
+</script>
+
+</body>
+</html>
