@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UNAFF | Transfers</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f6fb;font-family:Arial,sans-serif;color:#172438}
+header{background:#071629;color:white;padding:22px 6%;font-size:23px;font-weight:bold}
+header span{color:#d9ad52}
+main{max-width:650px;margin:35px auto;padding:20px}
+.card{background:white;padding:28px;border-radius:16px;box-shadow:0 5px 20px #00000010}
+h1{margin-top:0}
+p{color:#64748b;line-height:1.5}
+.notice{background:#fff1ce;color:#805c19;padding:13px;border-radius:8px;font-size:13px;margin:18px 0}
+label{display:block;font-weight:bold;font-size:14px;margin:16px 0 7px}
+input,select{width:100%;padding:13px;border:1px solid #dce2eb;border-radius:8px;font-size:15px;background:white}
+button{width:100%;padding:15px;background:#c79b43;border:0;border-radius:8px;margin-top:22px;font-weight:bold;font-size:15px}
+#result{margin-top:18px;padding:14px;border-radius:8px;background:#edf5ff;display:none}
+.back{display:inline-block;margin-top:20px;color:#a57929;text-decoration:none}
+</style>
+</head>
+<body>
+<header>UNAFF <span>DIGITAL</span></header>
+<main>
+<div class="card">
+<h1>Money Transfer</h1>
+<p>Explore the UNAFF simulated transfer experience.</p>
+
+<div class="notice">
+DEMONSTRATION ONLY. No money will be sent or received. Do not enter real financial information.
+</div>
+
+<form id="transferForm">
+<label>Recipient name</label>
+<input id="recipient" placeholder="Demo recipient" required>
+
+<label>Demo account number</label>
+<input id="account" placeholder="e.g. DEMO4582" required>
+
+<label>Currency</label>
+<select id="currency">
+<option value="XAF">XAF - Central African CFA Franc</option>
+<option value="USD">USD - US Dollar</option>
+<option value="EUR">EUR - Euro</option>
+<option value="GBP">GBP - British Pound</option>
+</select>
+
+<label>Amount</label>
+<input id="amount" type="number" min="1" step="1" placeholder="Enter demo amount" required>
+
+<label>Description</label>
+<input id="description" placeholder="Demo payment">
+
+<button type="submit">Preview Demo Transfer</button>
+</form>
+
+<div id="result"></div>
+<a class="back" href="index.html">← Back to dashboard</a>
+</div>
+</main>
+
+<script>
+document.getElementById("transferForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+const recipient=document.getElementById("recipient").value.trim();
+const account=document.getElementById("account").value.trim();
+const amount=Number(document.getElementById("amount").value);
+const currency=document.getElementById("currency").value;
+
+if(!recipient || !account || !Number.isFinite(amount) || amount<=0){
+alert("Please enter valid demo details.");
+return;
+}
+
+const result=document.getElementById("result");
+result.style.display="block";
+result.innerHTML=
+"<strong>Demo transfer preview</strong><br><br>"+
+"Recipient: "+escapeHTML(recipient)+"<br>"+
+"Account: "+escapeHTML(account)+"<br>"+
+"Amount: "+amount.toLocaleString()+" "+currency+
+"<br><br><strong>No funds were transferred.</strong>";
+});
+
+function escapeHTML(value){
+return value.replace(/[&<>"']/g,function(c){
+return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+});
+}
+</script>
+</body>
+</html>
