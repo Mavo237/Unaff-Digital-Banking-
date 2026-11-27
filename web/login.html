@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNAFF | Customer Access</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#071629,#163b60);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+.container{
+  background:white;
+  width:100%;
+  max-width:430px;
+  padding:30px;
+  border-radius:18px;
+}
+.brand{
+  text-align:center;
+  font-size:26px;
+  font-weight:bold;
+  color:#071629;
+  margin-bottom:8px;
+}
+.brand span{color:#c79b43}
+.subtitle{text-align:center;color:#64748b;margin-bottom:22px}
+.notice{
+  background:#fff1ce;
+  color:#805c19;
+  padding:10px;
+  border-radius:8px;
+  font-size:12px;
+  text-align:center;
+  margin-bottom:20px;
+}
+.tabs{display:flex;gap:10px;margin-bottom:22px}
+.tabs button{
+  flex:1;padding:12px;border:0;border-radius:8px;
+  background:#edf1f6;font-weight:bold;cursor:pointer
+}
+.tabs button.active{background:#071629;color:white}
+label{display:block;margin:13px 0 7px;font-size:13px;font-weight:bold}
+input{
+  width:100%;padding:13px;border:1px solid #dce2eb;
+  border-radius:8px;font-size:15px
+}
+.action{
+  width:100%;margin-top:22px;padding:14px;
+  background:#c79b43;border:0;border-radius:8px;
+  font-weight:bold;font-size:15px;cursor:pointer
+}
+.message{margin-top:15px;text-align:center;color:#64748b;font-size:13px}
+.hidden{display:none}
+.back{text-align:center;margin-top:20px}
+a{color:#a57929;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="brand">UNAFF <span>DIGITAL</span></div>
+  <p class="subtitle">Your digital banking experience</p>
+
+  <div class="notice">
+    DEMO ONLY — Never enter real banking passwords or personal information.
+  </div>
+
+  <div class="tabs">
+    <button id="loginTab" class="active" onclick="showForm('login')">Login</button>
+    <button id="registerTab" onclick="showForm('register')">Register</button>
+  </div>
+
+  <form id="loginForm">
+    <label>Email address</label>
+    <input type="email" placeholder="demo@example.com" required>
+
+    <label>Demo password</label>
+    <input type="password" placeholder="Enter demo password" required>
+
+    <button class="action" type="submit">Login to Demo</button>
+  </form>
+
+  <form id="registerForm" class="hidden">
+    <label>Full name</label>
+    <input type="text" placeholder="Demo customer name" required>
+
+    <label>Email address</label>
+    <input type="email" placeholder="demo@example.com" required>
+
+    <label>Phone number</label>
+    <input type="tel" placeholder="Demo phone number" required>
+
+    <label>Create demo password</label>
+    <input type="password" minlength="6" placeholder="Create password" required>
+
+    <button class="action" type="submit">Create Demo Account</button>
+  </form>
+
+  <p id="message" class="message"></p>
+
+  <div class="back">
+    <a href="index.html">← Back to dashboard</a>
+  </div>
+</div>
+
+<script>
+function showForm(type){
+  const login = type === "login";
+  document.getElementById("loginForm").classList.toggle("hidden",!login);
+  document.getElementById("registerForm").classList.toggle("hidden",login);
+  document.getElementById("loginTab").classList.toggle("active",login);
+  document.getElementById("registerTab").classList.toggle("active",!login);
+  document.getElementById("message").textContent="";
+}
+
+document.getElementById("loginForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  document.getElementById("message").textContent=
+    "Demo login interface ready. Authentication is not connected yet.";
+});
+
+document.getElementById("registerForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  document.getElementById("message").textContent=
+    "Demo registration interface ready. No customer data has been saved.";
+});
+</script>
+</body>
+</html>
