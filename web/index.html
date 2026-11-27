@@ -180,7 +180,17 @@
 
 <script>
   function demoAction(feature) {
-    alert(feature + " is part of the UNAFF demonstration prototype.");
+  const pages = {
+    "Transfer Money": "transfer.html",
+    "My Accounts": "profile.html",
+    "Transactions": "transactions.html",
+    "My Profile": "profile.html"
+  };
+
+  if (pages[feature]) {
+    window.location.href = pages[feature];
+  }
+  }
   }
 </script>
 
