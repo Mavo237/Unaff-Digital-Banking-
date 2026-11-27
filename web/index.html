@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071629">
+  <title>UNAFF Digital Banking</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f6fb;
+      color: #172438;
+    }
+    header {
+      background: #071629;
+      color: white;
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand { font-size: 23px; font-weight: bold; }
+    .brand span { color: #d9ad52; }
+    header small { color: #cbd5e1; }
+    main { padding: 30px 6%; max-width: 1250px; margin: auto; }
+    .welcome { margin-bottom: 25px; }
+    .welcome h1 { font-size: 27px; margin-bottom: 8px; }
+    .welcome p { color: #64748b; }
+    .demo {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 7px 12px;
+      background: #fff1ce;
+      color: #8a6118;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .balance {
+      background: linear-gradient(120deg, #071629, #163b60);
+      color: white;
+      padding: 30px;
+      border-radius: 18px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px #07162920;
+    }
+    .balance p { color: #cbd5e1; }
+    .amount { font-size: 36px; margin: 14px 0; }
+    .currency { color: #e2b85d; font-size: 14px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      padding: 23px;
+      border-radius: 15px;
+      border: 1px solid #e5eaf1;
+    }
+    .card h3 { margin-bottom: 12px; }
+    .card p { color: #64748b; font-size: 14px; line-height: 1.6; }
+    button {
+      background: #c79b43;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      color: #071629;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    button:hover { background: #e2b85d; }
+    .section-title { margin: 30px 0 17px; }
+    .transaction {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .transaction small { color: #64748b; }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+      font-size: 13px;
+    }
+    @media(max-width: 500px) {
+      .amount { font-size: 29px; }
+      main { padding: 24px 5%; }
+      header { padding: 18px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">UNAFF <span>DIGITAL</span></div>
+  <small>Banking Prototype</small>
+</header>
+
+<main>
+  <section class="welcome">
+    <h1>Welcome to UNAFF Banking</h1>
+    <p>Your digital financial experience starts here.</p>
+    <span class="demo">DEMONSTRATION ONLY</span>
+  </section>
+
+  <section class="balance">
+    <p>Available demo balance</p>
+    <div class="amount">2,500,000 <span class="currency">XAF</span></div>
+    <p>Demo Account: **** 4582</p>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h3>💸 Transfer Money</h3>
+      <p>Explore the simulated money transfer experience.</p>
+      <button onclick="demoAction('Money transfer')">Explore</button>
+    </div>
+
+    <div class="card">
+      <h3>💳 My Accounts</h3>
+      <p>View your demonstration account information.</p>
+      <button onclick="demoAction('My accounts')">View accounts</button>
+    </div>
+
+    <div class="card">
+      <h3>📊 Transactions</h3>
+      <p>Explore your sample transaction history.</p>
+      <button onclick="demoAction('Transactions')">View history</button>
+    </div>
+
+    <div class="card">
+      <h3>👤 My Profile</h3>
+      <p>Explore customer profile settings.</p>
+      <button onclick="demoAction('Customer profile')">Open profile</button>
+    </div>
+  </section>
+
+  <h2 class="section-title">Recent Activity</h2>
+
+  <div class="transaction">
+    <div>
+      <strong>Sample deposit</strong><br>
+      <small>Demo transaction</small>
+    </div>
+    <strong style="color:green">+150,000 XAF</strong>
+  </div>
+
+  <div class="transaction">
+    <div>
+      <strong>Sample payment</strong><br>
+      <small>Demo transaction</small>
+    </div>
+    <strong style="color:red">-25,000 XAF</strong>
+  </div>
+</main>
+
+<footer>
+  UNAFF Digital Banking — Independent demonstration prototype.<br>
+  No real banking services or money transfers are provided.
+</footer>
+
+<script>
+  function demoAction(feature) {
+    alert(feature + " is part of the UNAFF demonstration prototype.");
+  }
+</script>
+
+</body>
+</html>
