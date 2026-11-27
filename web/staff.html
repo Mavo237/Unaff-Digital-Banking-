@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UNAFF | Staff Administration</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f6fb;font-family:Arial,sans-serif;color:#172438}
+header{background:#071629;color:white;padding:20px 5%;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{font-size:22px;font-weight:bold}
+.brand span{color:#d9ad52}
+header small{color:#cbd5e1}
+main{max-width:1150px;margin:auto;padding:28px 5%}
+h1{margin-bottom:8px}
+.subtitle{color:#64748b}
+.notice{background:#fff1ce;color:#805c19;padding:13px;border-radius:9px;margin:20px 0;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin:22px 0}
+.card{background:white;padding:20px;border-radius:13px;border:1px solid #e5eaf1}
+.card small{color:#64748b}
+.card h2{font-size:28px;margin:12px 0 0}
+.section{margin-top:30px}
+table{width:100%;border-collapse:collapse;min-width:550px}
+th,td{text-align:left;padding:15px;border-bottom:1px solid #e5eaf1;font-size:14px}
+th{background:#f7f9fc}
+.table-wrap{overflow-x:auto;background:white;border-radius:12px}
+.status{color:#a57929;font-weight:bold}
+button{padding:9px 13px;border:0;border-radius:7px;background:#c79b43;font-weight:bold}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.links a{background:#071629;color:white;padding:12px;border-radius:8px;text-decoration:none;font-size:13px}
+footer{text-align:center;color:#64748b;padding:25px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">UNAFF <span>DIGITAL</span></div>
+<small>Staff Administration — Demo</small>
+</header>
+
+<main>
+<h1>Administration Dashboard</h1>
+<p class="subtitle">Overview of the demonstration banking system.</p>
+
+<div class="notice">
+DEMONSTRATION ONLY — This dashboard uses fictional records. It is not connected to a real banking institution.
+</div>
+
+<div class="stats">
+<div class="card">
+<small>Demo customers</small>
+<h2>1,250</h2>
+</div>
+<div class="card">
+<small>Demo accounts</small>
+<h2>1,480</h2>
+</div>
+<div class="card">
+<small>Pending applications</small>
+<h2>18</h2>
+</div>
+<div class="card">
+<small>Demo transactions</small>
+<h2>3,640</h2>
+</div>
+</div>
+
+<section class="section">
+<h2>Customer Applications</h2>
+<p class="subtitle">Sample applications awaiting staff review.</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Customer</th>
+<th>Reference</th>
+<th>Application</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jordan Demo</td>
+<td>APP-001</td>
+<td>Online</td>
+<td class="status">Pending</td>
+<td><button onclick="review('APP-001')">Review</button></td>
+</tr>
+<tr>
+<td>Alex Sample</td>
+<td>APP-002</td>
+<td>Branch</td>
+<td class="status">Under review</td>
+<td><button onclick="review('APP-002')">Review</button></td>
+</tr>
+<tr>
+<td>Chris Example</td>
+<td>APP-003</td>
+<td>Online</td>
+<td class="status">Pending</td>
+<td><button onclick="review('APP-003')">Review</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="section">
+<h2>Staff Quick Access</h2>
+<div class="links">
+<a href="index.html">Customer Dashboard</a>
+<a href="transactions.html">Transaction History</a>
+<a href="profile.html">Customer Profile</a>
+<a href="login.html">Customer Login</a>
+</div>
+</section>
+</main>
+
+<footer>
+UNAFF Digital Banking — Independent demonstration prototype.
+</footer>
+
+<script>
+function review(reference){
+alert("Sample application "+reference+
+"\n\nThis is a visual review demonstration. No real application is being approved or rejected.");
+}
+</script>
+</body>
+</html>
