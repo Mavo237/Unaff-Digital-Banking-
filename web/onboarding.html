@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UNAFF | Customer Onboarding</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f6fb;font-family:Arial,sans-serif;color:#172438}
+header{background:#071629;color:white;padding:20px 6%;font-size:23px;font-weight:bold}
+header span{color:#d9ad52}
+main{max-width:650px;margin:30px auto;padding:20px}
+.card{background:white;padding:25px;border-radius:15px}
+h1{margin-top:0}
+p{color:#64748b;line-height:1.5}
+.notice{background:#fff1ce;color:#805c19;padding:13px;border-radius:8px;margin:18px 0;font-size:13px}
+label{display:block;font-weight:bold;margin:15px 0 7px;font-size:14px}
+input,select{width:100%;padding:13px;border:1px solid #dce2eb;border-radius:8px;font-size:15px}
+button{width:100%;padding:14px;background:#c79b43;border:0;border-radius:8px;margin-top:22px;font-weight:bold;font-size:15px}
+#result{display:none;background:#edf5ff;padding:15px;border-radius:8px;margin-top:18px;line-height:1.7}
+a{display:inline-block;margin-top:20px;color:#a57929;text-decoration:none}
+</style>
+</head>
+<body>
+<header>UNAFF <span>DIGITAL</span></header>
+<main>
+<div class="card">
+<h1>Customer Onboarding</h1>
+<p>Start your digital banking registration application.</p>
+
+<div class="notice">
+DEMO ONLY. Use fictional information. This form does not submit real banking applications or collect identity documents.
+</div>
+
+<form id="application">
+<label>Full name</label>
+<input id="name" placeholder="Demo customer name" required>
+
+<label>Email address</label>
+<input id="email" type="email" placeholder="demo@example.test" required>
+
+<label>Phone number</label>
+<input id="phone" type="tel" placeholder="Demo phone number" required>
+
+<label>Preferred registration method</label>
+<select id="method">
+<option value="Online">Online registration</option>
+<option value="Branch">Branch registration</option>
+</select>
+
+<label>Preferred account currency</label>
+<select id="currency">
+<option>XAF</option>
+<option>EUR</option>
+<option>USD</option>
+<option>GBP</option>
+</select>
+
+<button type="submit">Preview Application</button>
+</form>
+
+<div id="result"></div>
+<a href="index.html">← Back to dashboard</a>
+</div>
+</main>
+
+<script>
+document.getElementById("application").addEventListener("submit",function(e){
+e.preventDefault();
+
+const name=document.getElementById("name").value.trim();
+const email=document.getElementById("email").value.trim();
+const phone=document.getElementById("phone").value.trim();
+const method=document.getElementById("method").value;
+const currency=document.getElementById("currency").value;
+
+if(!name || !email || !phone){
+alert("Complete all fields.");
+return;
+}
+
+const safe=value=>value.replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML=
+"<strong>Demo application preview</strong><br>"+
+"Reference: UNAFF-DEMO-001<br>"+
+"Name: "+safe(name)+"<br>"+
+"Email: "+safe(email)+"<br>"+
+"Phone: "+safe(phone)+"<br>"+
+"Method: "+method+"<br>"+
+"Currency: "+currency+
+"<br><strong>Status: Preview only — not submitted.</strong>";
+});
+</script>
+</body>
+</html>
